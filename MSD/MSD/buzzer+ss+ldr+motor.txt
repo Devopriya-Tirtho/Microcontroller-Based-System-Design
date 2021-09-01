@@ -1,0 +1,185 @@
+
+
+const int pingPin=8;
+const int buzzer=9;
+void setup() {
+  // put your setup code here, to run once:
+
+  Serial.begin(9600);
+
+}
+
+void loop() {
+
+long duration,distance;
+
+pinMode(pingPin,OUTPUT);
+digitalWrite(pingPin,LOW);
+delayMicroseconds(2);
+digitalWrite(pingPin,HIGH);
+  delayMicroseconds(5);
+  digitalWrite(pingPin, LOW);
+
+  pinMode(pingPin, INPUT);
+  duration = pulseIn(pingPin, HIGH);
+
+  distance=(duration*0.034)/2;
+
+  if(distance<=4)
+  {
+    tone(buzzer,1000);
+    delay(1000);
+  }
+  else 
+  {
+    noTone(buzzer);
+    delay(1000);
+ 
+  }
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const int buzzer=9;
+void setup() {
+  // put your setup code here, to run once:
+pinMode(buzzer,OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+tone(buzzer,1000);
+delay(1000);
+noTone(buzzer);
+delay(1000);
+}
+
+
+
+
+
+/* Ping))) Sensor
+
+   This sketch reads a PING))) ultrasonic rangefinder and returns the
+   distance to the closest object in range. To do this, it sends a pulse
+   to the sensor to initiate a reading, then listens for a pulse
+   to return.  The length of the returning pulse is proportional to
+   the distance of the object from the sensor.
+
+   The circuit:
+	* +V connection of the PING))) attached to +5V
+	* GND connection of the PING))) attached to ground
+	* SIG connection of the PING))) attached to digital pin 7
+
+   http://www.arduino.cc/en/Tutorial/Ping
+
+   created 3 Nov 2008
+   by David A. Mellis
+   modified 30 Aug 2011
+   by Tom Igoe
+
+   This example code is in the public domain.
+
+ */
+
+// this constant won't change.  It's the pin number
+// of the sensor's output:
+const int pingPin = 7;
+
+void setup() {
+  // initialize serial communication:
+  Serial.begin(9600);
+}
+
+void loop() {
+  // establish variables for duration of the ping,
+  // and the distance result in inches and centimeters:
+  long duration, distance;
+
+  // The PING))) is triggered by a HIGH pulse of 2 or more microseconds.
+  // Give a short LOW pulse beforehand to ensure a clean HIGH pulse:
+  pinMode(pingPin, OUTPUT);
+  digitalWrite(pingPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(pingPin, HIGH);
+  delayMicroseconds(5);
+  digitalWrite(pingPin, LOW);
+
+  // The same pin is used to read the signal from the PING))): a HIGH
+  // pulse whose duration is the time (in microseconds) from the sending
+  // of the ping to the reception of its echo off of an object.
+  pinMode(pingPin, INPUT);
+  duration = pulseIn(pingPin, HIGH);
+
+  // convert the time into a distance
+  distance=(duration*0.034)/2;
+  
+  Serial.print("cm");
+  Serial.print(distance);
+  Serial.println();
+
+  delay(1000);
+}
+
+
+
+
+
+
+int ldr=A4;
+int value=0;
+void setup() {
+  // put your setup code here, to run once:
+Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+value=analogRead(ldr);
+Serial.println("Intensity of the lfr is=");
+Serial.println(value);
+delay(1000);
+}
+
+
+
+
+
+
+int lmf=7;
+int lmr=6;
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  pinMode(lmf,OUTPUT);
+  pinMode(lmr,OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+//forward
+  digitalWrite(lmf,HIGH);
+  digitalWrite(lmr,LOW);
+  delay(2000);
+  //reverse
+  digitalWrite(lmf,LOW);
+  digitalWrite(lmr,HIGH);
+  delay(2000);
+//stop
+  digitalWrite(lmf,LOW);
+  digitalWrite(lmr,LOW);
+  delay(2000);
+}
